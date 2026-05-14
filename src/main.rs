@@ -1,5 +1,5 @@
 fn main() {
     let txt: &str = "abcde";
 
-    println!("{}", txt.len());
+    println!("{}", &txt[txt.len()-1..]);
 }
