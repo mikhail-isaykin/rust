@@ -1,3 +1,10 @@
 fn main() {
-    println!("Hello, world!");
+    let num: i32 = -1;
+    
+    if num >= 0 {
+        println!("Положительное");
+    }
+    else {
+        println!("Отрицательное");
+    }
 }
