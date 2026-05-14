@@ -1,11 +1,7 @@
 fn main() {
-    let word1: &str = "abc";
-    let word2: &str = "ade";
+    let num: u16 = 123;
 
-    if &word1[..1] == &word2[..1] {
-        println!("Первые буквы совпадают");
-    }
-    else {
-        println!("Первые буквы не совпадают");
-    }
+    let text: String = num.to_string();
+    
+    println!("{}", text);
 }
