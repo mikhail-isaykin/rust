@@ -1,5 +1,6 @@
 fn main() {
-    let num: i16 = 5;
+    let num: i32 = 123;
+    let text: String = num.to_string();
 
-    println!("{}", num >= 1 && num <= 10);
+    println!("{}", &text.chars().last().unwrap());
 }
