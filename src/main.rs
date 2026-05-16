@@ -1,10 +1,12 @@
 fn main() {
-    let num: i32 = 323;
+    let num1: u16 = 142;
+    let num2: u16 = 142;
 
-    let text: String = num.to_string();
-
-    let first: char = text.chars().next().unwrap();
-    let last: char = text.chars().last().unwrap();
-
-    println!("{}", first == last);
+    if num1 > num2 {
+        println!("{}", num1);
+    } else if num2 > num1 {
+        println!("{}", num2);
+    } else {
+        println!("Числа равны");
+    }
 }
