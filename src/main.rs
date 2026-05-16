@@ -1,4 +1,5 @@
 fn main() {
-    let num: u8 = 100;
-    println!("{}", num >= 10 && num <= 99);
+    for num in 1..=10 {
+        println!("{}", num);
+    }
 }
