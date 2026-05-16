@@ -1,4 +1,4 @@
 fn main() {
-    let num: i32 = 1234;
-    println!("{}", if num % 2 == 0 { "Четное" } else { "Нечетное" });
+    let num: u8 = 100;
+    println!("{}", num >= 10 && num <= 99);
 }
