@@ -1,7 +1,6 @@
 fn main() {
-    let txt: &str = "abcde";
+    let num1: u16 = 36;
+    let num2: u16 = 12;
 
-    for char in txt.chars() {
-        println!("{}", char);
-    }
+    println!("{}", num1 % num2);
 }
