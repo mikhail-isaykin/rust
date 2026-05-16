@@ -1,6 +1,12 @@
 fn main() {
-    let num1: u16 = 36;
-    let num2: u16 = 12;
+    let num: u8 = 30;
+    
+    match num {
+        1..=15 => println!("{}", 1),
+        16..=30 => println!("{}", 2),
+        31..=45 => println!("{}", 3),
+        46..=60 => println!("{}", 4),
+        _ => println!("{}", { false }),
 
-    println!("{}", num1 % num2);
+    }
 }
