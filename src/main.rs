@@ -1,17 +1,10 @@
-use std::io;
-
 fn main() {
-    let mut text: String = String::new();
+    let num: i32 = 323;
 
-    io::stdin()
-        .read_line(&mut text)
-        .unwrap();
+    let text: String = num.to_string();
 
-    let len_text: usize = text.trim().chars().count();
+    let first: char = text.chars().next().unwrap();
+    let last: char = text.chars().last().unwrap();
 
-    if len_text > 1 {
-        println!("{}", text.trim().chars().nth(len_text - 2).unwrap());
-    } else {
-        println!("{}", { false });
-    }
+    println!("{}", first == last);
 }
