@@ -1,34 +1,18 @@
-use std::collections::HashMap;
+use std::collections::HashSet;
 use std::io;
 
 fn main() {
+    let allowed_employees: HashSet<i32> = HashSet::from([123, 456, 789, 101, 202]);
 
-    let mut num_trophies_input = String::new();
+
+    let mut employee_id = String::new();
+
     io::stdin()
-        .read_line(&mut num_trophies_input)
-        .expect("Не удалось прочитать количество трофеев");
+        .read_line(&mut employee_id)
+        .unwrap();
 
-    let num_trophies: u32 = num_trophies_input
-        .trim()
-        .parse()
-        .expect("Пожалуйста, введите корректное число");
+    let employee_id: i32 = employee_id.trim().parse().unwrap();
 
-    let mut trophies: HashMap<String, u32> = HashMap::new();
-
-    for _ in 0..num_trophies {
-        let mut trophy: String = String::new();
-
-        io::stdin()
-            .read_line(&mut trophy)
-            .unwrap();
-
-        trophies.entry(trophy.trim().to_string())
-            .and_modify(|count| *count += 1)
-            .or_insert(1);
-    }
-
-    for (key, value) in &trophies {
-        println!("{}: {}", key, value);
-    }
+    println!("{}", allowed_employees.contains(&employee_id));
 
 }
