@@ -1,9 +1,34 @@
+use std::collections::HashMap;
+use std::io;
+
 fn main() {
-    let num1: u16 = 12;
-    let num2: u16 = 13;
 
-    let first1: u16 = num1.to_string().chars().next().unwrap().to_digit(10).unwrap() as u16;
-    let first2: u16 = num2.to_string().chars().next().unwrap().to_digit(10).unwrap() as u16;
+    let mut num_trophies_input = String::new();
+    io::stdin()
+        .read_line(&mut num_trophies_input)
+        .expect("Не удалось прочитать количество трофеев");
 
-    println!("{}", first1 == first2);
+    let num_trophies: u32 = num_trophies_input
+        .trim()
+        .parse()
+        .expect("Пожалуйста, введите корректное число");
+
+    let mut trophies: HashMap<String, u32> = HashMap::new();
+
+    for _ in 0..num_trophies {
+        let mut trophy: String = String::new();
+
+        io::stdin()
+            .read_line(&mut trophy)
+            .unwrap();
+
+        trophies.entry(trophy.trim().to_string())
+            .and_modify(|count| *count += 1)
+            .or_insert(1);
+    }
+
+    for (key, value) in &trophies {
+        println!("{}: {}", key, value);
+    }
+
 }
