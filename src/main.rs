@@ -1,9 +1,12 @@
 fn main() {
-    let num1: u16 = 36;
-    let num2: u16 = 24;
-    let num3: u16 = 12;
+    let chr1: char = 'a';
+    let chr2: char = 'b';
+    let chr3: char = 'c';
 
-    let m: u16 = [num1, num2, num3].into_iter().max().unwrap();
+    let mut txt: String = chr1.to_string();
 
-    println!("{}", m);
+    txt.push(chr2);
+    txt.push(chr3);
+
+    println!("{}", txt);
 }
