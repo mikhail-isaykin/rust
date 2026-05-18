@@ -1,7 +1,6 @@
 fn main() {
-    let mb: f32 = 35.5;
-    let klb: f32 = mb * 1024.0;
-    let byte: f32 = klb * 1024.0 as f32;
+    let num1: f32 = 36.0;
+    let num2: f32 = 12.0;
 
-    println!("{}", byte);
+    println!("{}%", num1 * 100.0 / num2);
 }
