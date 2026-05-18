@@ -1,11 +1,11 @@
 fn main() {
-    let txt1: &str = "123";
-    let txt2: &str = "456";
-    let txt3: &str = "789";
+    let txt: &str = "123456789";
 
-    let mut result: String = txt1.to_string();
-    result.push_str(txt2);
-    result.push_str(txt3);
+    let mut sum: u32 = 0;
 
-    println!("{}", result);
+    for chr in txt.chars() {
+        sum += chr.to_digit(10).unwrap();
+
+    }
+    println!("{}", sum);
 }
