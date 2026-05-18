@@ -1,5 +1,7 @@
 fn main() {
-    for num in (1..=100).rev() {
-        println!("{}", num);
+    let txt: &str = "abcde";
+
+    for chr in txt.chars().rev() {
+        println!("{}", chr);
     }
 }
