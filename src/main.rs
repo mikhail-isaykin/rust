@@ -1,6 +1,7 @@
 fn main() {
-    let num1: u16 = 36;
-    let num2: u16 = 12;
+    let txt: &str = "123456789";
 
-    println!("{}", num1 % num2 == 0);
+    for char in txt.chars().rev() {
+        println!("{}", num);
+    }
 }
