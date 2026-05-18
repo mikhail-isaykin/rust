@@ -1,6 +1,10 @@
 fn main() {
-    let kb: u32 = 35;
-    let byte: u32 = kb * 1024;
+    let num: u16 = 12;
 
-    println!("{}", byte);
+    match num {
+        1..=10 => println!("{}", 1),
+        11..=20 => println!("{}", 2),
+        21..=31 => println!("{}", 3),
+        _ => println!("invalid day"),
+    }
 }
