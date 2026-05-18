@@ -1,8 +1,15 @@
-fn main() {
-    let mut sum_sq_odd: i32 = 0;
+use std::io;
 
-    for num in (1..=100i32).step_by(2) {
-        sum_sq_odd += num.pow(2);
+fn main() {
+    let mut range: String = String::new();
+
+    io::stdin()
+        .read_line(&mut range)
+        .unwrap();
+    
+    let range: u32 = range.trim().parse().unwrap();
+
+    for exp in 0..range {
+        println!("{}", 2u32.pow(exp));
     }
-    println!("{}", sum_sq_odd);
 }
