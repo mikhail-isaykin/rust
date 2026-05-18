@@ -1,11 +1,8 @@
 fn main() {
-    let txt: &str = "123456789";
+    let gb: f32 = 35.24;
+    let mb: f32 = gb * 1024.0;
+    let kb: f32 = mb * 1024.0;
+    let byte: f32 = kb * 1024.0;
 
-    let mut sum: u32 = 0;
-
-    for chr in txt.chars() {
-        sum += chr.to_digit(10).unwrap();
-
-    }
-    println!("{}", sum);
+    println!("{:?}", [gb, mb, kb, byte])
 }
