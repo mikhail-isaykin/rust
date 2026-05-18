@@ -1,15 +1,11 @@
-use std::io;
-
 fn main() {
-    let mut range: String = String::new();
+    let txt1: &str = "123";
+    let txt2: &str = "456";
+    let txt3: &str = "789";
 
-    io::stdin()
-        .read_line(&mut range)
-        .unwrap();
-    
-    let range: u32 = range.trim().parse().unwrap();
+    let mut result: String = txt1.to_string();
+    result.push_str(txt2);
+    result.push_str(txt3);
 
-    for exp in 0..range {
-        println!("{}", 2u32.pow(exp));
-    }
+    println!("{}", result);
 }
