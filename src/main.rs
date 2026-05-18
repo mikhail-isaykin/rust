@@ -1,6 +1,8 @@
 fn main() {
-    let num1: f32 = 36.0;
-    let num2: f32 = 12.0;
+    let mut sum_sq_odd: i32 = 0;
 
-    println!("{}%", num1 * 100.0 / num2);
+    for num in (1..=100i32).step_by(2) {
+        sum_sq_odd += num.pow(2);
+    }
+    println!("{}", sum_sq_odd);
 }
