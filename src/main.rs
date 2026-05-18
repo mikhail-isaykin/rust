@@ -1,12 +1,7 @@
 fn main() {
-    let chr1: char = '1';
-    let chr2: char = '2';
-    let chr3: char = '3';
+    let mb: f32 = 35.5;
+    let klb: f32 = mb * 1024.0;
+    let byte: f32 = klb * 1024.0 as f32;
 
-    let mut sum: u16 = 0;
-
-    for chr in [chr1, chr2, chr3] {
-        sum += chr.to_digit(10).unwrap() as u16;
-    }
-    println!("{}", sum);
+    println!("{}", byte);
 }
