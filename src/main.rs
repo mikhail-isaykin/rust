@@ -1,7 +1,9 @@
 fn main() {
-    let num: u32 = 1234567;
-    
-    let num_rev: u32 = num.to_string().chars().rev().collect::<String>().parse().unwrap();
+    let num: u16 = 12;
 
-    println!("{}", num_rev);
+    for n in 1..=num {
+        if num % n == 0 {
+            println!("{}", n);
+        }
+    }
 }
