@@ -1,5 +1,9 @@
 fn main() {
-    let num: f32 = 12.3;
+    let mut sum: u32 = 0;
 
-    println!("{}", num * 0.1);
+    for num in 1u32..=100 {
+        sum += num.pow(2);
+    }
+    
+    println!("{}", sum);
 }
