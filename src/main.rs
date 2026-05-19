@@ -1,11 +1,11 @@
 fn main() {
-    let mut num: f32 = 1000.0;
-    let mut counter: u32 = 0;
+    let mut num: u32 = 10;
+    let mut exp: u32 = 1;
 
-    while num >= 10.0 {
-        num /= 2.0;
-        counter += 1;
+    while num != 10000 {
+        num *= 10;
+        exp += 1
     }
 
-    println!("{}", counter);
+    println!("{}", exp);
 }
