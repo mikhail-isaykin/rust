@@ -1,8 +1,14 @@
 fn main() {
-    let days: u32 = 10;
-    let hours: u32 = days * 24;
-    let minutes: u32 = hours * 60;
-    let seconds: u32 = minutes * 60;
+    let chrs: [char; 5] = ['1', '2', '3', '4', '5'];
 
-    println!("{}", seconds);
+    let mut txt: String = String::with_capacity(5);
+
+    for chr in chrs {
+        txt.push(chr);
+    }
+
+    let num: u32 = txt.parse().unwrap();
+
+    println!("{}", num);
+
 }
