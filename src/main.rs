@@ -1,14 +1,7 @@
 fn main() {
-    let chrs: [char; 5] = ['1', '2', '3', '4', '5'];
+    let num: u32 = 1234567;
+    
+    let num_rev: u32 = num.to_string().chars().rev().collect::<String>().parse().unwrap();
 
-    let mut txt: String = String::with_capacity(5);
-
-    for chr in chrs {
-        txt.push(chr);
-    }
-
-    let num: u32 = txt.parse().unwrap();
-
-    println!("{}", num);
-
+    println!("{}", num_rev);
 }
