@@ -1,9 +1,11 @@
 fn main() {
-    let num: u16 = 12;
+    let mut num: f32 = 1000.0;
+    let mut counter: u32 = 0;
 
-    for n in 1..=num {
-        if num % n == 0 {
-            println!("{}", n);
-        }
+    while num >= 10.0 {
+        num /= 2.0;
+        counter += 1;
     }
+
+    println!("{}", counter);
 }
