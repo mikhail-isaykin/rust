@@ -1,11 +1,5 @@
 fn main() {
-    let mut num: u32 = 10;
-    let mut exp: u32 = 1;
+    let arr: [u32; 5] = [1, 2, 3, 4, 5];
 
-    while num != 10000 {
-        num *= 10;
-        exp += 1
-    }
-
-    println!("{}", exp);
+    println!("{}", arr.len());
 }
