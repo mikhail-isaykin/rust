@@ -1,10 +1,5 @@
 fn main() {
-    let num: u8 = 12;
+    let result: f32 = (1..=100).map(|num| num as f32).sum::<f32>() / (1..=100).count() as f32;
 
-    let mut factorial: u32 = 1;
-
-    for i in 1..=num {
-        factorial *= i as u32;
-    }
-    println!("{}", factorial);
+    println!("{}", result)
 }
