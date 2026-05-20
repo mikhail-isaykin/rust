@@ -1,12 +1,10 @@
 fn main() {
-    let num: u16 = 12345;
+    let num: u8 = 12;
 
-    let sum: u32 = num
-        .to_string()
-        .chars()
-        .filter_map(|chr| chr.to_digit(10))
-        .filter(|dgt| dgt % 2 == 0)
-        .sum();
+    let mut factorial: u32 = 1;
 
-    println!("{}", sum)
+    for i in 1..=num {
+        factorial *= i as u32;
+    }
+    println!("{}", factorial);
 }
