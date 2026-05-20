@@ -1,7 +1,12 @@
 fn main() {
-    let arr: [&str; 3] = ["123", "456", "789"];
+    let num: u16 = 12345;
 
-    for txt in arr {
-        println!("{}", txt.chars().next().unwrap())
-    }
+    let sum: u32 = num
+        .to_string()
+        .chars()
+        .filter_map(|chr| chr.to_digit(10))
+        .filter(|dgt| dgt % 2 == 0)
+        .sum();
+
+    println!("{}", sum)
 }
