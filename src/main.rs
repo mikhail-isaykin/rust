@@ -1,7 +1,10 @@
-use std::mem;
-
 fn main() {
-    let arr: [i8; 5] = [1, 2, 3, 4, 5];
+    let num: u16 = 12345;
 
-    println!("{}", mem::size_of_val(&arr));
+    let txt: String = num.to_string();
+
+    let first: u32 = txt.chars().next().unwrap().to_digit(10).unwrap();
+    let last: u32 = txt.chars().last().unwrap().to_digit(10).unwrap();
+
+    println!("{}", first + last)
 }
