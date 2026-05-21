@@ -1,5 +1,7 @@
 fn main() {
-    let arr: [u32; 5] = [1, 2, 3, 4, 5];
+    let num: u16 = 12345;
 
-    println!("{}", arr.iter().sum::<u32>());
+    for chr in num.to_string().chars().rev() {
+        println!("{}", chr);
+    }
 }
