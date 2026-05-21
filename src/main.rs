@@ -1,5 +1,7 @@
-fn main() {
-    let result: f32 = (1..=100).map(|num| num as f32).sum::<f32>() / (1..=100).count() as f32;
+use std::mem;
 
-    println!("{}", result)
+fn main() {
+    let arr: [i8; 5] = [1, 2, 3, 4, 5];
+
+    println!("{}", mem::size_of_val(&arr));
 }
