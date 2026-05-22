@@ -1,7 +1,9 @@
 fn main() {
-    let arr: [u32; 6] = [1, 2, 3, 4, 5, 8];
+    let num: u16 = 12345;
 
-    let avg: f32 = arr.map(|n: u32| n as f32).iter().sum::<f32>() / arr.len() as f32;
+    let txt: &str = &num.to_string()[0..3];
 
-    println!("{}", avg);
+    for chr in txt.chars() {
+        println!("{}", chr);
+    }
 }
