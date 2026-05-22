@@ -1,7 +1,7 @@
 fn main() {
-    let arr: [u32; 5] = [1, 2, 3, 4, 5];
+    let arr: [u32; 6] = [1, 2, 3, 4, 5, 8];
 
-    let sum: u32 = arr.map(|n: u32| n.pow(2)).iter().sum();
+    let avg: f32 = arr.map(|n: u32| n as f32).iter().sum::<f32>() / arr.len() as f32;
 
-    println!("{}", sum);
+    println!("{}", avg);
 }
