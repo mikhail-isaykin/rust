@@ -1,13 +1,7 @@
 fn main() {
-    let num: u16 = 12345;
+    let arr: [u8; 5] = [1, 2, 3, 4, 5];
 
-    let nums: Vec<u16> = num
-        .to_string()
-        .chars()
-        .map(|chr| chr.to_digit(10).unwrap() as u16)
-        .collect();
+    let sum_sqrt: f32 = arr.iter().map(|num| (*num as f32).sqrt()).sum();
 
-    for num in &nums[(nums.len() - 3)..nums.len()] {
-        println!("{}", num);
-    }
+    println!("{}", sum_sqrt);
 }
