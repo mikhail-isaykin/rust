@@ -1,9 +1,9 @@
 fn main() {
-    let num: u16 = 12345;
+    let mut arr: [u8; 10] = [0; 10];
 
-    let txt: &str = &num.to_string()[0..3];
-
-    for chr in txt.chars() {
-        println!("{}", chr);
+    for i in 0..=9 {
+        arr[i] = i as u8 + 1;
     }
+
+    println!("{:?}", arr);
 }
