@@ -1,9 +1,13 @@
 fn main() {
-    let mut arr: [u8; 10] = [0; 10];
+    let num: u16 = 12345;
 
-    for i in 0..=9 {
-        arr[i] = i as u8 + 1;
+    let nums: Vec<u16> = num
+        .to_string()
+        .chars()
+        .map(|chr| chr.to_digit(10).unwrap() as u16)
+        .collect();
+
+    for num in &nums[(nums.len() - 3)..nums.len()] {
+        println!("{}", num);
     }
-
-    println!("{:?}", arr);
 }
