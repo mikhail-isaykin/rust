@@ -1,7 +1,7 @@
 fn main() {
-    let arr: [u8; 5] = [1, 2, 3, 4, 5];
+    let arr: [u8; 4] = [1, 2, 3, 4];
 
-    let sum_sqrt: f32 = arr.iter().map(|num| (*num as f32).sqrt()).sum();
+    let arr: [u8; 4] = arr.map(|num| num * 2);
 
-    println!("{}", sum_sqrt);
+    println!("{:?}", arr);
 }
