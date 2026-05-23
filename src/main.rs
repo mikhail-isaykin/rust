@@ -1,7 +1,9 @@
 fn main() {
-    let arr: [u8; 4] = [1, 2, 3, 4];
+    let mut arr: [u8; 10] = [0; 10];
 
-    let arr: [u8; 4] = arr.map(|num| num * 2);
+    for (i, num) in (1..=10).rev().enumerate() {
+        arr[i] = num as u8;
+    }
 
     println!("{:?}", arr);
 }
