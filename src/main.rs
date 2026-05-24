@@ -1,9 +1,7 @@
 fn main() {
-    let mut arr: [u8; 10] = [0; 10];
+    let arr: [i8; 5] = [1, 2, -3, 4, -5];
 
-    for (i, num) in (1..=10).rev().enumerate() {
-        arr[i] = num as u8;
-    }
+    let sum: u8 = arr.iter().filter(|&&num| num > 0).map(|&num| num as u8).sum();
 
-    println!("{:?}", arr);
+    println!("{}", sum);
 }
