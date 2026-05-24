@@ -1,7 +1,7 @@
 fn main() {
-    let arr: [u8; 5] = [1, 2, 3, 4, 5];
+    let arr: [&str; 3] = ["123", "456", "789"];
 
-    for num in arr.iter().rev() {
-        print!("{} ", num);
-    }
+    let nums: [u16; 3]  = arr.map(|s| s.parse().unwrap());
+
+    print!("{:?}", nums);
 }
