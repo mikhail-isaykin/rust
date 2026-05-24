@@ -1,7 +1,7 @@
 fn main() {
-    let arr: [&str; 3] = ["123", "456", "789"];
+    let arr: [i8; 6] = [-1, 2, -3, 4, 5, 11];
 
-    let nums: [u16; 3]  = arr.map(|s| s.parse().unwrap());
+    let sum: u8 = arr.iter().filter_map(|&num| (num > 0 && num < 10).then_some(num as u8)).sum();
 
-    print!("{:?}", nums);
+    print!("{}", sum);
 }
