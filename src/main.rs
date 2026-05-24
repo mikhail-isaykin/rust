@@ -1,7 +1,7 @@
 fn main() {
-    let arr: [i8; 6] = [-1, 2, -3, 4, 5, 11];
+    let arr: [u8; 5] = [1, 2, 3, 4, 5];
 
-    let sum: u8 = arr.iter().filter_map(|&num| (num > 0 && num < 10).then_some(num as u8)).sum();
+    let evens: Vec<_> = arr.iter().filter(|&&num| num % 2 == 0).collect();
 
-    print!("{}", sum);
+    print!("{:?}", evens);
 }
