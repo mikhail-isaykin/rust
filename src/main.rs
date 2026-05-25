@@ -1,10 +1,7 @@
 fn main() {
-    let arr: [u8; 6] = [1, 2, 3, 0, 4, 5];
+    let arr: [u8; 5] = [1, 2, 3, 4, 5];
 
-    for num in arr.iter() {
-        if *num == 0 {
-            break;
-        }
-        print!("{} ", num);
-    }
+    let sum: u16 = arr.iter().map(|&num| (num as u16).pow(2)).sum();
+
+    print!("{}", sum);
 }
