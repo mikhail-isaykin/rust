@@ -1,10 +1,5 @@
 fn main() {
-    let arr: [u8; 5] = [1, 2, 3, 4, 5];
+    let arr: [&str; 3] = ["2025", "12", "31"];
 
-    let mut txt: String = String::new();
-
-    for num in arr {
-        txt.push(char::from_digit(num as u32, 10).unwrap());
-    }
-    print!("{}", txt);
+    print!("{}", arr.into_iter().rev().collect::<Vec<_>>().join("-"));
 }
