@@ -1,7 +1,10 @@
 fn main() {
     let arr: [u8; 5] = [1, 2, 3, 4, 5];
 
-    let sum: u16 = arr.iter().map(|&num| (num as u16).pow(2)).sum();
+    let mut txt: String = String::new();
 
-    print!("{}", sum);
+    for num in arr {
+        txt.push(char::from_digit(num as u32, 10).unwrap());
+    }
+    print!("{}", txt);
 }
