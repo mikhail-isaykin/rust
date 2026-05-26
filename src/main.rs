@@ -1,24 +1,26 @@
 use std::collections::HashMap;
 
 
-fn first_unique_char(s: &str) -> Option<char> {
-    // Считаем, сколько раз встречается каждый символ
-    let mut counts: HashMap<char, usize> = HashMap::new();
-    for c in s.chars() {
-        *counts.entry(c).or_insert(0) += 1;
+fn are_anagrams(a: &str, b: &str) -> bool {
+    if a.chars().count() != b.chars().count() {
+        return false;
     }
 
-    // Идём по строке заново и возвращаем первый с количеством 1
-    s.chars().find(|c| counts[c] == 1)
+    let mut counts: HashMap<char, i32> = HashMap::new();
+    for c in a.chars() {
+        *counts.entry(c).or_insert(0) += 1;
+    }
+    for c in b.chars() {
+        *counts.entry(c).or_insert(0) -= 1;
+    }
+
+    counts.values().all(|&v| v == 0)
 }
 
 fn main() {
-    let tests = ["leetcode", "loveleetcode", "aabb", "swiss"];
+    let pairs = [("listen", "silent"), ("hello", "world"), ("rust", "trus")];
 
-    for t in tests {
-        match first_unique_char(t) {
-            Some(c) => println!("{:>13} -> '{}'", t, c),
-            None => println!("{:>13} -> нет уникальных", t),
-        }
+    for (a, b) in pairs {
+        println!("{} / {} -> {}", a, b, are_anagrams(a, b));
     }
 }
