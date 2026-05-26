@@ -1,26 +1,14 @@
-use std::collections::HashMap;
+fn is_palindrome(s: &str) -> bool {
+    let chars: Vec<char> = s.chars().collect();
+    let n = chars.len();
 
-
-fn are_anagrams(a: &str, b: &str) -> bool {
-    if a.chars().count() != b.chars().count() {
-        return false;
-    }
-
-    let mut counts: HashMap<char, i32> = HashMap::new();
-    for c in a.chars() {
-        *counts.entry(c).or_insert(0) += 1;
-    }
-    for c in b.chars() {
-        *counts.entry(c).or_insert(0) -= 1;
-    }
-
-    counts.values().all(|&v| v == 0)
+    (0..n / 2).all(|i| chars[i] == chars[n - 1 - i])
 }
 
 fn main() {
-    let pairs = [("listen", "silent"), ("hello", "world"), ("rust", "trus")];
+    let words = ["radar", "rust", "level", "hello"];
 
-    for (a, b) in pairs {
-        println!("{} / {} -> {}", a, b, are_anagrams(a, b));
+    for w in words {
+        println!("{} -> {}", w, is_palindrome(w));
     }
 }
