@@ -1,11 +1,10 @@
 use std::collections::HashMap;
 
-
-fn two_sum(nums: &[i32], target: i32) -> Option<(usize, usize)> {
+fn first_duplicate(nums: &[i32]) -> Option<(usize, usize)> {
     let mut seen: HashMap<i32, usize> = HashMap::new();
 
     for (i, &n) in nums.iter().enumerate() {
-        if let Some(&j) = seen.get(&(target - n)) {
+        if let Some(&j) = seen.get(&n) {
             return Some((j, i));
         }
         seen.insert(n, i);
@@ -15,10 +14,10 @@ fn two_sum(nums: &[i32], target: i32) -> Option<(usize, usize)> {
 }
 
 fn main() {
-    let nums = [2, 7, 11, 15];
+    let nums = [3, 8, 5, 1, 8, 4, 5];
 
-    match two_sum(&nums, 9) {
-        Some((i, j)) => println!("Индексы: {}, {}", i, j),
-        None => println!("Пара не найдена"),
+    match first_duplicate(&nums) {
+        Some((i, j)) => println!("Дубликат на индексах: {}, {}", i, j),
+        None => println!("Дубликатов нет"),
     }
 }
