@@ -1,22 +1,23 @@
-use std::collections::HashSet;
-
-fn dedup_keep_order(nums: &[i32]) -> Vec<i32> {
-    let mut seen: HashSet<i32> = HashSet::new();
-    let mut result: Vec<i32> = Vec::new();
-
-    for &n in nums.iter() {
-        if seen.insert(n) {
-            result.push(n);
-        }
+fn rotate_right(nums: &[i32], k: usize) -> Vec<i32> {
+    if nums.is_empty() {
+        return Vec::new();
     }
+
+    let n = nums.len();
+    let shift = k % n;
+    let mut result = Vec::with_capacity(n);
+
+    result.extend_from_slice(&nums[n - shift..]);
+    result.extend_from_slice(&nums[..n - shift]);
 
     result
 }
 
 fn main() {
-    let nums = vec![1, 3, 2, 3, 5, 1, 4, 2];
+    let nums = vec![1, 2, 3, 4, 5, 6, 7];
+    let k = 3;
 
-    let unique = dedup_keep_order(&nums);
+    let rotated = rotate_right(&nums, k);
     println!("Исходный: {:?}", nums);
-    println!("Без дубликатов: {:?}", unique);
+    println!("После поворота на {}: {:?}", k, rotated);
 }
