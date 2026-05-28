@@ -1,23 +1,27 @@
-fn rotate_right(nums: &[i32], k: usize) -> Vec<i32> {
-    if nums.is_empty() {
-        return Vec::new();
+fn max_subarray_sum(nums: &[i32], k: usize) -> Option<i32> {
+    if k == 0 || nums.len() < k {
+        return None;
     }
 
-    let n = nums.len();
-    let shift = k % n;
-    let mut result = Vec::with_capacity(n);
+    let mut window_sum: i32 = nums[..k].iter().sum();
+    let mut max_sum = window_sum;
 
-    result.extend_from_slice(&nums[n - shift..]);
-    result.extend_from_slice(&nums[..n - shift]);
+    for i in k..nums.len() {
+        window_sum += nums[i] - nums[i - k];
+        if window_sum > max_sum {
+            max_sum = window_sum;
+        }
+    }
 
-    result
+    Some(max_sum)
 }
 
 fn main() {
-    let nums = vec![1, 2, 3, 4, 5, 6, 7];
+    let nums = vec![2, 1, 5, 1, 3, 2, 7, 1];
     let k = 3;
 
-    let rotated = rotate_right(&nums, k);
-    println!("Исходный: {:?}", nums);
-    println!("После поворота на {}: {:?}", k, rotated);
+    match max_subarray_sum(&nums, k) {
+        Some(s) => println!("Максимальная сумма окна длины {}: {}", k, s),
+        None => println!("Некорректные данные"),
+    }
 }
