@@ -1,23 +1,22 @@
-use std::collections::HashMap;
+use std::collections::HashSet;
 
-fn first_duplicate(nums: &[i32]) -> Option<(usize, usize)> {
-    let mut seen: HashMap<i32, usize> = HashMap::new();
+fn dedup_keep_order(nums: &[i32]) -> Vec<i32> {
+    let mut seen: HashSet<i32> = HashSet::new();
+    let mut result: Vec<i32> = Vec::new();
 
-    for (i, &n) in nums.iter().enumerate() {
-        if let Some(&j) = seen.get(&n) {
-            return Some((j, i));
+    for &n in nums.iter() {
+        if seen.insert(n) {
+            result.push(n);
         }
-        seen.insert(n, i);
     }
 
-    None
+    result
 }
 
 fn main() {
-    let nums = [3, 8, 5, 1, 8, 4, 5];
+    let nums = vec![1, 3, 2, 3, 5, 1, 4, 2];
 
-    match first_duplicate(&nums) {
-        Some((i, j)) => println!("Дубликат на индексах: {}, {}", i, j),
-        None => println!("Дубликатов нет"),
-    }
+    let unique = dedup_keep_order(&nums);
+    println!("Исходный: {:?}", nums);
+    println!("Без дубликатов: {:?}", unique);
 }
