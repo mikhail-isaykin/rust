@@ -1,24 +1,22 @@
-fn second_max(nums: &[i32]) -> Option<i32> {
-    let mut max = i32::MIN;
-    let mut second = i32::MIN;
+fn split_even_odd(nums: &[i32]) -> (Vec<i32>, Vec<i32>) {
+    let mut evens: Vec<i32> = Vec::new();
+    let mut odds: Vec<i32> = Vec::new();
 
     for &n in nums.iter() {
-        if n > max {
-            second = max;
-            max = n;
-        } else if n > second && n != max {
-            second = n;
+        if n % 2 == 0 {
+            evens.push(n);
+        } else {
+            odds.push(n);
         }
     }
 
-    if second == i32::MIN { None } else { Some(second) }
+    (evens, odds)
 }
 
 fn main() {
-    let nums = vec![3, 1, 9, 7, 9, 2, 5];
+    let nums = vec![1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-    match second_max(&nums) {
-        Some(n) => println!("Второй максимум: {}", n),
-        None => println!("Второго максимума нет"),
-    }
+    let (evens, odds) = split_even_odd(&nums);
+    println!("Чётные: {:?}", evens);
+    println!("Нечётные: {:?}", odds);
 }
