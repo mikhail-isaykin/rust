@@ -1,20 +1,26 @@
-fn fizzbuzz(n: u32) -> (u32, u32, u32) {
-    let (mut fizz, mut buzz, mut fizzbuzz) = (0, 0, 0);
+fn is_palindrome(s: &str) -> bool {
+    let cleaned: Vec<char> = s
+        .chars()
+        .filter(|c| !c.is_whitespace())
+        .map(|c| c.to_lowercase().next().unwrap())
+        .collect();
 
-    for i in 1..=n {
-        match (i % 3, i % 5) {
-            (0, 0) => fizzbuzz += 1,
-            (0, _) => fizz += 1,
-            (_, 0) => buzz += 1,
-            _      => {}
-        }
-    }
-
-    (fizz, buzz, fizzbuzz)
+    let reversed: Vec<char> = cleaned.iter().rev().cloned().collect();
+    cleaned == reversed
 }
 
 fn main() {
-    let n = 15;
-    let (fizz, buzz, fizzbuzz) = fizzbuzz(n);
-    println!("n={} → Fizz:{}, Buzz:{}, FizzBuzz:{}", n, fizz, buzz, fizzbuzz);
+    let tests = vec![
+        ("racecar",      true),
+        ("A man a plan", true),
+        ("hello",        false),
+        ("",             true),
+        ("Aba",          true),
+    ];
+
+    for (input, expected) in tests {
+        let result = is_palindrome(input);
+        let status = if result == expected { "✓" } else { "✗" };
+        println!("{} {:20} → {}", status, input, result);
+    }
 }
