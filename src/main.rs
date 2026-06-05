@@ -1,26 +1,14 @@
-fn is_palindrome(s: &str) -> bool {
-    let cleaned: Vec<char> = s
-        .chars()
-        .filter(|c| !c.is_whitespace())
-        .map(|c| c.to_lowercase().next().unwrap())
-        .collect();
-
-    let reversed: Vec<char> = cleaned.iter().rev().cloned().collect();
-    cleaned == reversed
-}
+use std::collections::HashSet;
 
 fn main() {
-    let tests = vec![
-        ("racecar",      true),
-        ("A man a plan", true),
-        ("hello",        false),
-        ("",             true),
-        ("Aba",          true),
-    ];
+    let nums = vec![4, 1, 2, 1, 3, 4, 2, 5, 3];
 
-    for (input, expected) in tests {
-        let result = is_palindrome(input);
-        let status = if result == expected { "✓" } else { "✗" };
-        println!("{} {:20} → {}", status, input, result);
-    }
+    let mut seen = HashSet::new();
+    let unique: Vec<i32> = nums
+        .iter()
+        .filter(|&&n| seen.insert(n))
+        .copied()
+        .collect();
+
+    println!("{:?}", unique);
 }
