@@ -1,12 +1,9 @@
 fn main() {
-    let nums = vec![2, 7, 11, 15, 3, 6];
-    let target = 9;
+    let mut nums = vec![5, 2, 8, 1, 9, 3, 7];
+    let k = 3;
 
-    for i in 0..nums.len() {
-        for j in (i + 1)..nums.len() {
-            if nums[i] + nums[j] == target {
-                println!("[{}, {}]", i, j);
-            }
-        }
-    }
+    nums.sort_unstable_by(|a, b| b.cmp(a));
+    let top: Vec<i32> = nums.into_iter().take(k).collect();
+
+    println!("{:?}", top);
 }
