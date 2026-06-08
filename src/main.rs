@@ -1,14 +1,12 @@
-use std::rc::Rc;
-
 fn main() {
-    let nums = Rc::new(vec![1, 2, 3, 4, 5, 6]);
+    let nums = Box::new(vec![5, 12, 8, 15, 20]);
 
-    let mut sum = 0;
+    let mut count = 0;
     for &x in nums.iter() {
-        if x % 2 == 0 {
-            sum += x;
+        if x > 10 {
+            count += 1;
         }
     }
 
-    println!("{sum}");
+    println!("{count}");
 }
