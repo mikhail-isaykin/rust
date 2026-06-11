@@ -1,15 +1,25 @@
 use std::collections::HashMap;
 
+fn first_unique(nums: Vec<i32>) -> Option<i32> {
+    let mut counts: HashMap<i32, usize> = HashMap::new();
+
+    // Считаем частоты
+    for num in &nums {
+        *counts.entry(*num).or_insert(0) += 1;
+    }
+
+    // Ищем первое уникальное число
+    for num in nums {
+        if counts.get(&num) == Some(&1) {
+            return Some(num);
+        }
+    }
+
+    None
+}
+
 fn main() {
-    let text = "apple banana apple orange banana apple";
+    let nums = vec![4, 2, 1, 2, 1];
 
-    let mut frequencies: HashMap<&str, i32> = HashMap::new();
-
-    for word in text.split_whitespace() {
-        *frequencies.entry(word).or_insert(0) += 1;
-    }
-
-    for (word, count) in &frequencies {
-        println!("{}: {}", word, count);
-    }
+    println!("{:?}", first_unique(nums)); // Some(4)
 }
