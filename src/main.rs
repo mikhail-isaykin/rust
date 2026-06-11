@@ -1,13 +1,28 @@
-use std::rc::Rc;
+enum List {
+    Cons(i32, Box<List>),
+    Nil,
+}
+
+impl List {
+    fn len(&self) -> usize {
+        match self {
+            List::Cons(_, next) => 1 + next.len(),
+            List::Nil => 0,
+        }
+    }
+}
 
 fn main() {
-    let message = Rc::new(String::from("Hello, Rust!"));
+    let list = List::Cons(
+        1,
+        Box::new(List::Cons(
+            2,
+            Box::new(List::Cons(
+                3,
+                Box::new(List::Nil),
+            )),
+        )),
+    );
 
-    let a = Rc::clone(&message);
-    let b = Rc::clone(&message);
-
-    println!("{}", a);
-    println!("{}", b);
-
-    println!("Owners: {}", Rc::strong_count(&message));
+    println!("{}", list.len());
 }
