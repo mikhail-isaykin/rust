@@ -1,28 +1,28 @@
-enum List {
-    Cons(i32, Box<List>),
-    Nil,
-}
+fn snake_matrix(n: usize) -> Vec<Vec<usize>> {
+    let mut matrix = vec![vec![0; n]; n];
+    let mut value = 1;
 
-impl List {
-    fn len(&self) -> usize {
-        match self {
-            List::Cons(_, next) => 1 + next.len(),
-            List::Nil => 0,
+    for row in 0..n {
+        if row % 2 == 0 {
+            for col in 0..n {
+                matrix[row][col] = value;
+                value += 1;
+            }
+        } else {
+            for col in (0..n).rev() {
+                matrix[row][col] = value;
+                value += 1;
+            }
         }
     }
+
+    matrix
 }
 
 fn main() {
-    let list = List::Cons(
-        1,
-        Box::new(List::Cons(
-            2,
-            Box::new(List::Cons(
-                3,
-                Box::new(List::Nil),
-            )),
-        )),
-    );
+    let matrix = snake_matrix(4);
 
-    println!("{}", list.len());
+    for row in matrix {
+        println!("{:?}", row);
+    }
 }
