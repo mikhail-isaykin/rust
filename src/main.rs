@@ -1,12 +1,15 @@
-fn main() {
-    let nums = Box::new(vec![5, 12, 8, 15, 20]);
+use std::collections::HashMap;
 
-    let mut count = 0;
-    for &x in nums.iter() {
-        if x > 10 {
-            count += 1;
-        }
+fn main() {
+    let text = "apple banana apple orange banana apple";
+
+    let mut frequencies: HashMap<&str, i32> = HashMap::new();
+
+    for word in text.split_whitespace() {
+        *frequencies.entry(word).or_insert(0) += 1;
     }
 
-    println!("{count}");
+    for (word, count) in &frequencies {
+        println!("{}: {}", word, count);
+    }
 }
