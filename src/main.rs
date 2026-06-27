@@ -1,23 +1,16 @@
-fn longest_common_prefix(strs: Vec<String>) -> String {
-    if strs.is_empty() {
-        return String::new();
-    }
-    let first = &strs[0];
-    for (i, ch) in first.char_indices() {
-        for s in &strs[1..] {
-            if s.as_bytes().get(i) != Some(&(ch as u8)) {
-                return first[..i].to_string();
-            }
+fn two_sum(nums: Vec<i32>, target: i32) -> Option<(usize, usize)> {
+    use std::collections::HashMap;
+    let mut seen: HashMap<i32, usize> = HashMap::new();
+    for (i, &n) in nums.iter().enumerate() {
+        if let Some(&j) = seen.get(&(target - n)) {
+            return Some((j, i));
         }
+        seen.insert(n, i);
     }
-    first.clone()
+    None
 }
 
 fn main() {
-    let strs = vec![
-        "flower".to_string(),
-        "flow".to_string(),
-        "flight".to_string(),
-    ];
-    println!("{}", longest_common_prefix(strs)); // "fl"
+    let nums = vec![2, 7, 11, 15];
+    println!("{:?}", two_sum(nums, 9)); // Some((0, 1))
 }
