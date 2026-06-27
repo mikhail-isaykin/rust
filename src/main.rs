@@ -1,25 +1,23 @@
-use std::collections::HashMap;
-
-fn group_anagrams(words: Vec<String>) -> Vec<Vec<String>> {
-    let mut map: HashMap<String, Vec<String>> = HashMap::new();
-    for word in words {
-        let mut key: Vec<char> = word.chars().collect();
-        key.sort_unstable();
-        let key: String = key.into_iter().collect();
-        map.entry(key).or_default().push(word);
+fn longest_common_prefix(strs: Vec<String>) -> String {
+    if strs.is_empty() {
+        return String::new();
     }
-    map.into_values().collect()
+    let first = &strs[0];
+    for (i, ch) in first.char_indices() {
+        for s in &strs[1..] {
+            if s.as_bytes().get(i) != Some(&(ch as u8)) {
+                return first[..i].to_string();
+            }
+        }
+    }
+    first.clone()
 }
 
 fn main() {
-    let words = vec![
-        "eat".to_string(),
-        "tea".to_string(),
-        "tan".to_string(),
-        "ate".to_string(),
-        "nat".to_string(),
-        "bat".to_string(),
+    let strs = vec![
+        "flower".to_string(),
+        "flow".to_string(),
+        "flight".to_string(),
     ];
-    let groups = group_anagrams(words);
-    println!("{:?}", groups);
+    println!("{}", longest_common_prefix(strs)); // "fl"
 }
