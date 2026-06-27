@@ -1,16 +1,22 @@
-fn two_sum(nums: Vec<i32>, target: i32) -> Option<(usize, usize)> {
-    use std::collections::HashMap;
-    let mut seen: HashMap<i32, usize> = HashMap::new();
-    for (i, &n) in nums.iter().enumerate() {
-        if let Some(&j) = seen.get(&(target - n)) {
-            return Some((j, i));
+fn is_valid(s: &str) -> bool {
+    let mut stack = Vec::new();
+    for ch in s.chars() {
+        match ch {
+            '(' => stack.push(')'),
+            '[' => stack.push(']'),
+            '{' => stack.push('}'),
+            ')' | ']' | '}' => {
+                if stack.pop() != Some(ch) {
+                    return false;
+                }
+            }
+            _ => {}
         }
-        seen.insert(n, i);
     }
-    None
+    stack.is_empty()
 }
 
 fn main() {
-    let nums = vec![2, 7, 11, 15];
-    println!("{:?}", two_sum(nums, 9)); // Some((0, 1))
+    println!("{}", is_valid("()[]{}")); // true
+    println!("{}", is_valid("(]"));     // false
 }
