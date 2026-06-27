@@ -1,22 +1,14 @@
-fn is_valid(s: &str) -> bool {
-    let mut stack = Vec::new();
-    for ch in s.chars() {
-        match ch {
-            '(' => stack.push(')'),
-            '[' => stack.push(']'),
-            '{' => stack.push('}'),
-            ')' | ']' | '}' => {
-                if stack.pop() != Some(ch) {
-                    return false;
-                }
-            }
-            _ => {}
-        }
+fn max_subarray(nums: Vec<i32>) -> i32 {
+    let mut best = nums[0];
+    let mut cur = nums[0];
+    for &n in &nums[1..] {
+        cur = n.max(cur + n);
+        best = best.max(cur);
     }
-    stack.is_empty()
+    best
 }
 
 fn main() {
-    println!("{}", is_valid("()[]{}")); // true
-    println!("{}", is_valid("(]"));     // false
+    let nums = vec![-2, 1, -3, 4, -1, 2, 1, -5, 4];
+    println!("{}", max_subarray(nums)); // 6
 }
