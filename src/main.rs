@@ -1,37 +1,25 @@
 use std::cell::RefCell;
 use std::rc::Rc;
 
-type NodeRef = Rc<RefCell<Node>>;
-
-struct Node {
-    value: i32,
-    children: Vec<NodeRef>,
-}
-
 fn main() {
-    let root = Rc::new(RefCell::new(Node {
-        value: 1,
-        children: vec![],
-    }));
+    let request_count = Rc::new(RefCell::new(0));
 
-    let child1 = Rc::new(RefCell::new(Node {
-        value: 2,
-        children: vec![],
-    }));
+    let service1 = request_count.clone();
+    let service2 = request_count.clone();
 
-    let child2 = Rc::new(RefCell::new(Node {
-        value: 3,
-        children: vec![],
-    }));
+    *service1.borrow_mut() += 3;
+    *service2.borrow_mut() += 2;
 
-    root.borrow_mut().children.push(child1.clone());
-    root.borrow_mut().children.push(child2.clone());
+    println!("Service 1 added requests");
+    println!("Service 2 added requests");
 
-    child1.borrow_mut().value += 10;
+    println!(
+        "Total requests: {}",
+        request_count.borrow()
+    );
 
-    println!("Root: {}", root.borrow().value);
-
-    for child in &root.borrow().children {
-        println!("Child: {}", child.borrow().value);
-    }
+    println!(
+        "Active references: {}",
+        Rc::strong_count(&request_count)
+    );
 }
