@@ -1,14 +1,32 @@
-fn max_subarray(nums: Vec<i32>) -> i32 {
-    let mut best = nums[0];
-    let mut cur = nums[0];
-    for &n in &nums[1..] {
-        cur = n.max(cur + n);
-        best = best.max(cur);
-    }
-    best
+use std::cell::RefCell;
+use std::rc::Rc;
+
+type Link = Option<Rc<RefCell<Node>>>;
+
+struct Node {
+    value: i32,
+    next: Link,
 }
 
 fn main() {
-    let nums = vec![-2, 1, -3, 4, -1, 2, 1, -5, 4];
-    println!("{}", max_subarray(nums)); // 6
+    let first = Rc::new(RefCell::new(Node {
+        value: 10,
+        next: None,
+    }));
+
+    let second = Rc::new(RefCell::new(Node {
+        value: 20,
+        next: None,
+    }));
+
+    first.borrow_mut().next = Some(second.clone());
+
+    second.borrow_mut().value += 5;
+
+    println!("Первый: {}", first.borrow().value);
+    println!("Второй: {}", second.borrow().value);
+
+    if let Some(node) = &first.borrow().next {
+        println!("Следующий: {}", node.borrow().value);
+    }
 }
