@@ -1,32 +1,37 @@
 use std::cell::RefCell;
 use std::rc::Rc;
 
-type Link = Option<Rc<RefCell<Node>>>;
+type NodeRef = Rc<RefCell<Node>>;
 
 struct Node {
     value: i32,
-    next: Link,
+    children: Vec<NodeRef>,
 }
 
 fn main() {
-    let first = Rc::new(RefCell::new(Node {
-        value: 10,
-        next: None,
+    let root = Rc::new(RefCell::new(Node {
+        value: 1,
+        children: vec![],
     }));
 
-    let second = Rc::new(RefCell::new(Node {
-        value: 20,
-        next: None,
+    let child1 = Rc::new(RefCell::new(Node {
+        value: 2,
+        children: vec![],
     }));
 
-    first.borrow_mut().next = Some(second.clone());
+    let child2 = Rc::new(RefCell::new(Node {
+        value: 3,
+        children: vec![],
+    }));
 
-    second.borrow_mut().value += 5;
+    root.borrow_mut().children.push(child1.clone());
+    root.borrow_mut().children.push(child2.clone());
 
-    println!("Первый: {}", first.borrow().value);
-    println!("Второй: {}", second.borrow().value);
+    child1.borrow_mut().value += 10;
 
-    if let Some(node) = &first.borrow().next {
-        println!("Следующий: {}", node.borrow().value);
+    println!("Root: {}", root.borrow().value);
+
+    for child in &root.borrow().children {
+        println!("Child: {}", child.borrow().value);
     }
 }
