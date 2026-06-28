@@ -1,27 +1,26 @@
 use std::cell::RefCell;
 use std::rc::Rc;
 
-type History = Rc<RefCell<Vec<String>>>;
+type Chat = Rc<RefCell<Vec<String>>>;
 
-fn add_action(history: &History, action: &str) {
-    history.borrow_mut().push(action.to_string());
+fn send_message(chat: &Chat, user: &str, text: &str) {
+    chat.borrow_mut()
+        .push(format!("{}: {}", user, text));
 }
 
 fn main() {
-    let history = Rc::new(RefCell::new(Vec::new()));
+    let room = Rc::new(RefCell::new(Vec::new()));
 
-    let editor = history.clone();
-    let user = history.clone();
+    let user1 = room.clone();
+    let user2 = room.clone();
 
-    add_action(&editor, "Created file");
-    add_action(&user, "Added text");
-    add_action(&editor, "Saved file");
+    send_message(&user1, "Alex", "Hello!");
+    send_message(&user2, "John", "Hi!");
+    send_message(&user1, "Alex", "How are you?");
 
-    println!("Action history:");
+    println!("Chat history:");
 
-    for action in history.borrow().iter() {
-        println!("- {}", action);
+    for msg in room.borrow().iter() {
+        println!("{}", msg);
     }
-
-    println!("References: {}", Rc::strong_count(&history));
 }
