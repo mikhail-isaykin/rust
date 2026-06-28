@@ -1,25 +1,27 @@
 use std::cell::RefCell;
 use std::rc::Rc;
 
+type History = Rc<RefCell<Vec<String>>>;
+
+fn add_action(history: &History, action: &str) {
+    history.borrow_mut().push(action.to_string());
+}
+
 fn main() {
-    let request_count = Rc::new(RefCell::new(0));
+    let history = Rc::new(RefCell::new(Vec::new()));
 
-    let service1 = request_count.clone();
-    let service2 = request_count.clone();
+    let editor = history.clone();
+    let user = history.clone();
 
-    *service1.borrow_mut() += 3;
-    *service2.borrow_mut() += 2;
+    add_action(&editor, "Created file");
+    add_action(&user, "Added text");
+    add_action(&editor, "Saved file");
 
-    println!("Service 1 added requests");
-    println!("Service 2 added requests");
+    println!("Action history:");
 
-    println!(
-        "Total requests: {}",
-        request_count.borrow()
-    );
+    for action in history.borrow().iter() {
+        println!("- {}", action);
+    }
 
-    println!(
-        "Active references: {}",
-        Rc::strong_count(&request_count)
-    );
+    println!("References: {}", Rc::strong_count(&history));
 }
