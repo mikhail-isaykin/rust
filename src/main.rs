@@ -1,29 +1,29 @@
+struct User {
+    username: String,
+    active: bool,
+    login_count: u32,
+}
 
-use std::thread;
-use std::time::Duration;
-
-fn process_task(task_id: u32) {
-    println!("Task {} started", task_id);
-
-    thread::sleep(Duration::from_millis(500));
-
-    println!("Task {} completed", task_id);
+impl User {
+    fn login(&mut self) {
+        self.login_count += 1;
+        self.active = true;
+    }
 }
 
 fn main() {
-    let mut handles = vec![];
+    let mut user = User {
+        username: String::from("dev_user"),
+        active: false,
+        login_count: 0,
+    };
 
-    for id in 1..=3 {
-        let handle = thread::spawn(move || {
-            process_task(id);
-        });
+    user.login();
 
-        handles.push(handle);
-    }
-
-    for handle in handles {
-        handle.join().unwrap();
-    }
-
-    println!("All tasks finished");
+    println!(
+        "{} | active: {} | logins: {}",
+        user.username,
+        user.active,
+        user.login_count
+    );
 }
