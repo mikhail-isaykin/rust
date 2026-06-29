@@ -1,29 +1,18 @@
-struct User {
-    username: String,
-    active: bool,
-    login_count: u32,
-}
-
-impl User {
-    fn login(&mut self) {
-        self.login_count += 1;
-        self.active = true;
-    }
+fn filter_even_numbers(numbers: Vec<i32>) -> Vec<i32> {
+    numbers
+        .into_iter()
+        .filter(|n| n % 2 == 0)
+        .collect()
 }
 
 fn main() {
-    let mut user = User {
-        username: String::from("dev_user"),
-        active: false,
-        login_count: 0,
-    };
+    let values = vec![3, 8, 11, 14, 21, 26, 33, 40];
 
-    user.login();
+    let even_values = filter_even_numbers(values);
 
-    println!(
-        "{} | active: {} | logins: {}",
-        user.username,
-        user.active,
-        user.login_count
-    );
+    println!("Filtered values:");
+    
+    for value in even_values {
+        println!("{}", value);
+    }
 }
