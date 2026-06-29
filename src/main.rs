@@ -1,26 +1,21 @@
-use std::cell::RefCell;
-use std::rc::Rc;
-
-type Chat = Rc<RefCell<Vec<String>>>;
-
-fn send_message(chat: &Chat, user: &str, text: &str) {
-    chat.borrow_mut()
-        .push(format!("{}: {}", user, text));
-}
+use std::collections::HashMap;
 
 fn main() {
-    let room = Rc::new(RefCell::new(Vec::new()));
+    let mut scores: HashMap<&str, i32> = HashMap::new();
 
-    let user1 = room.clone();
-    let user2 = room.clone();
+    scores.insert("Alice", 42);
+    scores.insert("Bob", 17);
+    scores.insert("Charlie", 29);
 
-    send_message(&user1, "Alex", "Hello!");
-    send_message(&user2, "John", "Hi!");
-    send_message(&user1, "Alex", "How are you?");
+    for (name, score) in &scores {
+        println!("{} => {}", name, score);
+    }
 
-    println!("Chat history:");
+    let average: i32 = scores.values().sum::<i32>() / scores.len() as i32;
 
-    for msg in room.borrow().iter() {
-        println!("{}", msg);
+    if average > 25 {
+        println!("Average score is high: {}", average);
+    } else {
+        println!("Average score is low: {}", average);
     }
 }
