@@ -1,27 +1,27 @@
-struct User {
-    name: String,
-    age: u32,
+struct BankAccount {
+    owner: String,
+    balance: i32,
 }
 
-impl User {
-    fn new(name: &str, age: u32) -> Self {
+impl BankAccount {
+    fn new(owner: &str, balance: i32) -> Self {
         Self {
-            name: name.to_string(),
-            age,
+            owner: owner.to_string(),
+            balance,
         }
     }
 
-    fn greet(&self) -> String {
-        format!("Hi, my name is {} and I'm {} years old", self.name, self.age)
+    fn deposit(&mut self, amount: i32) {
+        self.balance += amount;
     }
 
-    fn have_birthday(&mut self) {
-        self.age += 1;
+    fn get_balance(&self) -> i32 {
+        self.balance
     }
 }
 
 fn main() {
-    let mut user = User::new("Alex", 21);
-    println!("{}", user.greet());
-    user.have_birthday();
+    let mut acc = BankAccount::new("Ivan", 100);
+    acc.deposit(50);
+    println!("Balance: {}", acc.get_balance());
 }
