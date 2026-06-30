@@ -1,18 +1,27 @@
-use std::fs::File;
-use std::io::{BufRead, BufReader};
+struct User {
+    name: String,
+    age: u32,
+}
 
-fn count_lines(path: &str) -> Result<usize, std::io::Error> {
-    let file = File::open(path)?;
-    let reader = BufReader::new(file);
+impl User {
+    fn new(name: &str, age: u32) -> Self {
+        Self {
+            name: name.to_string(),
+            age,
+        }
+    }
 
-    Ok(reader.lines().count())
+    fn greet(&self) -> String {
+        format!("Hi, my name is {} and I'm {} years old", self.name, self.age)
+    }
+
+    fn have_birthday(&mut self) {
+        self.age += 1;
+    }
 }
 
 fn main() {
-    let file_path = "data.txt";
-
-    match count_lines(file_path) {
-        Ok(count) => println!("Total lines: {}", count),
-        Err(error) => println!("Failed to read file: {}", error),
-    }
+    let mut user = User::new("Alex", 21);
+    println!("{}", user.greet());
+    user.have_birthday();
 }
